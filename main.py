@@ -1,5 +1,6 @@
-
-
+#import and initialize the pygame library
+import pygame
+pygame.init()
 
 # This implementation is based on this tutorial
 # https://gamedevelopment.tutsplus.com/tutorials/implementing-tetris-collision-detection--gamedev-852
@@ -17,3 +18,22 @@ board = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,
          [0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]
 
 print_board()
+
+#set up the drawing window
+screen = pygame.display.set_mode([500,500])
+gameIsRunning = True
+while gameIsRunning:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            gameIsRunning = False
+
+    screen.fill((255,255,255))
+    # Draw a solid blue circle in the center
+
+    pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
+
+    # Flip the display
+    pygame.display.flip()
+
+# Done! Time to quit.
+pygame.quit()
