@@ -5,6 +5,7 @@ pygame.init()
 # This implementation is based on this tutorial
 # https://gamedevelopment.tutsplus.com/tutorials/implementing-tetris-collision-detection--gamedev-852
 
+
 def print_board():
     for i in range(len(board)):
         for j in range(len(board[i])):
@@ -31,6 +32,8 @@ while gameIsRunning:
     # Draw a solid blue circle in the center
 
     pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
+    for x in range(0,12):
+        pygame.draw.line(screen,pygame.Color(255,145,110),(0,x * 15),(100, x * 15),5)
 
     # Flip the display
     pygame.display.flip()
