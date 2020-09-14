@@ -1,5 +1,6 @@
 #import and initialize the pygame library
 import pygame
+from screen import Screen
 pygame.init()
 
 # This implementation is based on this tutorial
@@ -12,7 +13,7 @@ def print_board():
             print(board[i][j], end=" ")
         print(" ")
 
-#The board will be a  16 x 10 multi-dimensional array
+#The board will be a  10x 16 multi-dimensional array
 board = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],
@@ -21,7 +22,7 @@ board = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,
 print_board()
 
 #set up the drawing window
-screen = pygame.display.set_mode([500,500])
+screen = pygame.display.set_mode([Screen.getScreenWidth(),Screen.getScreenHeight()])
 gameIsRunning = True
 while gameIsRunning:
     for event in pygame.event.get():
