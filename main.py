@@ -1,6 +1,7 @@
 #import and initialize the pygame library
 import pygame
 from screen import Screen
+from pieces import Piece
 pygame.init()
 
 # This implementation is based on this tutorial
@@ -23,6 +24,10 @@ print_board()
 
 #set up the drawing window
 screen = pygame.display.set_mode([Screen.getScreenWidth(),Screen.getScreenHeight()])
+
+YELLOW = (255,255,0)
+
+iPiece = Piece(50,50,0,"I",YELLOW)
 gameIsRunning = True
 while gameIsRunning:
     for event in pygame.event.get():
@@ -35,6 +40,8 @@ while gameIsRunning:
     pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
     for x in range(0,12):
         pygame.draw.line(screen,pygame.Color(255,145,110),(0,x * 15),(100, x * 15),5)
+
+    iPiece.draw(screen)
 
     # Flip the display
     pygame.display.flip()
