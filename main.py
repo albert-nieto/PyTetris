@@ -27,7 +27,9 @@ screen = pygame.display.set_mode([Screen.getScreenWidth(),Screen.getScreenHeight
 
 YELLOW = (255,255,0)
 
-iPiece = Piece(50,50,0,"I",YELLOW)
+iPiece = Piece(50,50,1,"I",YELLOW)
+spriteList = pygame.sprite.Group()
+spriteList.add(iPiece)
 gameIsRunning = True
 while gameIsRunning:
     for event in pygame.event.get():
@@ -41,7 +43,8 @@ while gameIsRunning:
     for x in range(0,12):
         pygame.draw.line(screen,pygame.Color(255,145,110),(0,x * 15),(100, x * 15),5)
 
-    iPiece.draw(screen)
+    spriteList.draw(screen)
+    #iPiece.draw(screen)
 
     # Flip the display
     pygame.display.flip()

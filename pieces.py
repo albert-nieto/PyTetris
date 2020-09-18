@@ -2,16 +2,33 @@ import pygame
 import random
 from screen import Screen
 
-class Piece:
+# Define some colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+YELLOW = (255, 255, 0)
+
+class Piece(pygame.sprite.Sprite):
+    """
+    This class represents a tetris piece.
+    """
     I = [[0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0]]
 
-    YELLOW = (255,255,0)
-    shapes = [I]
+    i = [[(0,1),(1,1),(2,1),(3,1)],[(1,0),(1,1),(1,2),(1,3)]]
+
     def __init__(self,x,y,rotation,shape,color):
+        super().__init__()
+        self.image = pygame.Surface([Screen.blockWidth * 4,Screen.blockWidth * 4])
+        self.image.fill(WHITE)
+        self.image.set_colorkey(WHITE)
         self.x, self.y = x,y
-        self.rect = pygame.Rect(x,y,Screen.blockWidth,Screen.blockWidth)
-        if shape == "I":
+        self.rect = self.image.get_rect()
+        self.color = color
+        self.rotation = rotation
+        self.draw()
+
+        """if shape == "I":
             self.shape = self.I
             print("Generating an I piece")
         elif shape == "J":
@@ -19,18 +36,24 @@ class Piece:
         else:
             pass
         self.rotation = rotation
-        self.color = color
+        self.color = color"""
+    def rotate(self):
+        self.rotation = (self.rotation + 1) % 3
 
-    def draw(self,surface):
-        for x in range(len(self.shape[self.rotation])):
+    def draw(self):
+        for val in self.i[self.rotation]:
+            pygame.draw.rect(self.image, self.color, [val[0] *Screen.blockWidth, val[1]*Screen.blockWidth, Screen.blockWidth, Screen.blockWidth])
+
+
+
+        """for x in range(len(self.shape[self.rotation])):
             print(self.shape[self.rotation][x])
-            """if self.shape[self.rotation][x] == 1:
+            if self.shape[self.rotation][x] == 1:
                 pygame.draw.rect(surface,self.color,self.rect)
             self.rect.x += Screen.blockWidth
             if (x > 1) and (x % 3) == 0:
                 self.rect.y += Screen.blockWidth
                 self.rect.x = self.x"""
-
         pass
 
 """def toBinString(hex_data):
