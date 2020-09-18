@@ -15,13 +15,13 @@ class Piece(pygame.sprite.Sprite):
     I = [[0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0]]
 
-    i = [[(0,1),(1,1),(2,1),(3,1)],[(1,0),(1,1),(1,2),(1,3)]]
+    i = [[(0,1),(1,1),(2,1),(3,1)],[(2,0),(2,1),(2,2),(2,3)],[(0,2),(1,2),(2,2),(3,2)],[(1,0),(1,1),(1,2),(1,3)]]
 
     def __init__(self,x,y,rotation,shape,color):
         super().__init__()
         self.image = pygame.Surface([Screen.blockWidth * 4,Screen.blockWidth * 4])
-        self.image.fill(WHITE)
-        self.image.set_colorkey(WHITE)
+        #self.image.fill(RED)
+        #self.image.set_colorkey(WHITE)
         self.x, self.y = x,y
         self.rect = self.image.get_rect()
         self.color = color
@@ -37,12 +37,18 @@ class Piece(pygame.sprite.Sprite):
             pass
         self.rotation = rotation
         self.color = color"""
-    def rotate(self):
-        self.rotation = (self.rotation + 1) % 3
+    def update(self):
+        self.rotation = (self.rotation + 1) % 4
+        print("update was called" + str(self.rotation))
+        self.draw()
 
     def draw(self):
+        print("Draw called")
+        self.image.fill(RED)
         for val in self.i[self.rotation]:
             pygame.draw.rect(self.image, self.color, [val[0] *Screen.blockWidth, val[1]*Screen.blockWidth, Screen.blockWidth, Screen.blockWidth])
+
+
 
 
 

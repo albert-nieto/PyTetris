@@ -26,8 +26,8 @@ print_board()
 screen = pygame.display.set_mode([Screen.getScreenWidth(),Screen.getScreenHeight()])
 
 YELLOW = (255,255,0)
-
-iPiece = Piece(50,50,1,"I",YELLOW)
+rotate = False
+iPiece = Piece(50,50,3,"I",YELLOW)
 spriteList = pygame.sprite.Group()
 spriteList.add(iPiece)
 gameIsRunning = True
@@ -35,6 +35,10 @@ while gameIsRunning:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             gameIsRunning = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                rotate = True
+
 
     screen.fill((255,255,255))
     # Draw a solid blue circle in the center
@@ -43,8 +47,11 @@ while gameIsRunning:
     for x in range(0,12):
         pygame.draw.line(screen,pygame.Color(255,145,110),(0,x * 15),(100, x * 15),5)
 
+    if rotate == True:
+        spriteList.update()
+        rotate = False
+
     spriteList.draw(screen)
-    #iPiece.draw(screen)
 
     # Flip the display
     pygame.display.flip()
