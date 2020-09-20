@@ -26,10 +26,13 @@ print_board()
 screen = pygame.display.set_mode([Screen.getScreenWidth(),Screen.getScreenHeight()])
 
 YELLOW = (255,255,0)
+BLUE = (0,35,102)
 rotate = False
-iPiece = Piece(50,50,3,"I",YELLOW)
+iPiece = Piece(50,50,0,"i",YELLOW)
+JPiece = Piece(300,300,0,"J",BLUE)
 spriteList = pygame.sprite.Group()
 spriteList.add(iPiece)
+spriteList.add(JPiece)
 gameIsRunning = True
 while gameIsRunning:
     for event in pygame.event.get():

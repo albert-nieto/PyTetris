@@ -16,6 +16,7 @@ class Piece(pygame.sprite.Sprite):
          [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0]]
 
     i = [[(0,1),(1,1),(2,1),(3,1)],[(2,0),(2,1),(2,2),(2,3)],[(0,2),(1,2),(2,2),(3,2)],[(1,0),(1,1),(1,2),(1,3)]]
+    J = [[(1,0),(1,1),(1,2),(0,2)],[(0,0),(0,1),(1,1),(2,1)],[(1,0),(2,0),(1,1),(1,2)],[(0,1),(1,1),(2,1),(2,2)]]
 
     def __init__(self,x,y,rotation,shape,color):
         super().__init__()
@@ -24,28 +25,30 @@ class Piece(pygame.sprite.Sprite):
         #self.image.set_colorkey(WHITE)
         self.x, self.y = x,y
         self.rect = self.image.get_rect()
+        pygame.Rect.move_ip(self.rect, x, y)
         self.color = color
         self.rotation = rotation
-        self.draw()
 
-        """if shape == "I":
-            self.shape = self.I
+        if shape == "i":
+            self.shape = self.i
             print("Generating an I piece")
         elif shape == "J":
-            pass
+            self.shape = self.J
         else:
             pass
-        self.rotation = rotation
-        self.color = color"""
+
+        self.draw()
+
     def update(self):
         self.rotation = (self.rotation + 1) % 4
         print("update was called" + str(self.rotation))
+
         self.draw()
 
     def draw(self):
         print("Draw called")
         self.image.fill(RED)
-        for val in self.i[self.rotation]:
+        for val in self.shape[self.rotation]:
             pygame.draw.rect(self.image, self.color, [val[0] *Screen.blockWidth, val[1]*Screen.blockWidth, Screen.blockWidth, Screen.blockWidth])
 
 
