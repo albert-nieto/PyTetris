@@ -17,6 +17,11 @@ class Piece(pygame.sprite.Sprite):
 
     i = [[(0,1),(1,1),(2,1),(3,1)],[(2,0),(2,1),(2,2),(2,3)],[(0,2),(1,2),(2,2),(3,2)],[(1,0),(1,1),(1,2),(1,3)]]
     J = [[(1,0),(1,1),(1,2),(0,2)],[(0,0),(0,1),(1,1),(2,1)],[(1,0),(2,0),(1,1),(1,2)],[(0,1),(1,1),(2,1),(2,2)]]
+    L = [[(1,0),(1,1),(1,2),(2,2)],[(0,2),(0,1),(1,1),(2,1)],[(1,0),(0,0),(1,1),(1,2)],[(0,1),(1,1),(2,1),(2,0)]]
+    O = [[(0,0),(1,0),(0,1),(1,1)],[(0,0),(1,0),(0,1),(1,1)],[(0,0),(1,0),(0,1),(1,1)],[(0,0),(1,0),(0,1),(1,1)]]
+    S = [[(0,2),(1,1),(1,2),(2,1)],[(0,0),(0,1),(1,1),(1,2)],[(0,1),(1,0),(1,1),(2,0)],[(1,0),(1,1),(2,1),(2,2)]]
+    T = [[(0,1),(1,1),(2,1),(1,2)],[(1,0),(1,1),(1,2),(0,1)],[(1,0),(0,1),(1,1),(2,1)],[(1,0),(1,1),(1,2),(2,1)]]
+    Z = [[(0,1),(1,1),(1,2),(2,2)],[(1,0),(1,1),(0,2),(0,1)],[(0,0),(1,0),(1,1),(2,1)],[(2,0),(2,1),(1,1),(1,2)]]
 
     def __init__(self,x,y,rotation,shape,color):
         super().__init__()
@@ -34,6 +39,16 @@ class Piece(pygame.sprite.Sprite):
             print("Generating an I piece")
         elif shape == "J":
             self.shape = self.J
+        elif shape == "L":
+            self.shape = self.L
+        elif shape == "O":
+            self.shape = self.O
+        elif shape == "S":
+            self.shape = self.S
+        elif shape == "T":
+            self.shape = self.T
+        elif shape == "Z":
+            self.shape = self.Z
         else:
             pass
 
@@ -50,9 +65,6 @@ class Piece(pygame.sprite.Sprite):
         self.image.fill(RED)
         for val in self.shape[self.rotation]:
             pygame.draw.rect(self.image, self.color, [val[0] *Screen.blockWidth, val[1]*Screen.blockWidth, Screen.blockWidth, Screen.blockWidth])
-
-
-
 
 
         """for x in range(len(self.shape[self.rotation])):

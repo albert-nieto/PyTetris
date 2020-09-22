@@ -29,7 +29,7 @@ YELLOW = (255,255,0)
 BLUE = (0,35,102)
 rotate = False
 iPiece = Piece(50,50,0,"i",YELLOW)
-JPiece = Piece(300,300,0,"J",BLUE)
+JPiece = Piece(300,300,0,"Z",BLUE)
 spriteList = pygame.sprite.Group()
 spriteList.add(iPiece)
 spriteList.add(JPiece)
