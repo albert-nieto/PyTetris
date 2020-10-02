@@ -27,7 +27,7 @@ class Piece(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface([Screen.blockWidth * 4,Screen.blockWidth * 4])
         #self.image.fill(RED)
-        #self.image.set_colorkey(WHITE)
+        self.image.set_colorkey(WHITE)
         self.x, self.y = x,y
         self.rect = self.image.get_rect()
         pygame.Rect.move_ip(self.rect, x, y)
@@ -62,7 +62,7 @@ class Piece(pygame.sprite.Sprite):
 
     def draw(self):
         print("Draw called")
-        self.image.fill(RED)
+        self.image.fill(WHITE)
         for val in self.shape[self.rotation]:
             pygame.draw.rect(self.image, self.color, [val[0] *Screen.blockWidth, val[1]*Screen.blockWidth, Screen.blockWidth, Screen.blockWidth])
 

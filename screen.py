@@ -1,6 +1,6 @@
 class Screen:
     screenWidth = 500
-    screenHeight = 500
+    screenHeight = 700
     blockWidth = 30
 
     @staticmethod

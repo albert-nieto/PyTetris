@@ -1,7 +1,11 @@
+import os
+os.environ['SDL_VIDEO_CENTERED'] = '1'
+
 #import and initialize the pygame library
 import pygame
 from screen import Screen
 from pieces import Piece
+
 pygame.init()
 
 # This implementation is based on this tutorial
@@ -23,7 +27,7 @@ board = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,
 print_board()
 
 #set up the drawing window
-screen = pygame.display.set_mode([Screen.getScreenWidth(),Screen.getScreenHeight()])
+mainscreen = pygame.display.set_mode([Screen.getScreenWidth(),Screen.getScreenHeight()])
 
 YELLOW = (255,255,0)
 BLUE = (0,35,102)
@@ -33,6 +37,9 @@ JPiece = Piece(300,300,0,"Z",BLUE)
 spriteList = pygame.sprite.Group()
 spriteList.add(iPiece)
 spriteList.add(JPiece)
+
+backImg = pygame.image.load('images/background.png')
+
 gameIsRunning = True
 while gameIsRunning:
     for event in pygame.event.get():
@@ -43,18 +50,15 @@ while gameIsRunning:
                 rotate = True
 
 
-    screen.fill((255,255,255))
-    # Draw a solid blue circle in the center
+    mainscreen.fill((255,255,255))
 
-    pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
-    for x in range(0,12):
-        pygame.draw.line(screen,pygame.Color(255,145,110),(0,x * 15),(100, x * 15),5)
+    mainscreen.blit(backImg,(Screen.screenWidth/2 - (150),Screen.screenHeight/2 -(240)))
 
     if rotate == True:
         spriteList.update()
         rotate = False
 
-    spriteList.draw(screen)
+    spriteList.draw(mainscreen)
 
     # Flip the display
     pygame.display.flip()
