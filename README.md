@@ -1,2 +1,2 @@
 # PyTetris
-Tretris implemented in Python using the Pygame library
+Tetris implemented in Python using the Pygame library
