@@ -54,10 +54,17 @@ class Piece(pygame.sprite.Sprite):
 
         self.draw()
 
-    def update(self):
+    def update(self, rot):
+        print("moving")
+        self.y += Screen.blockWidth
+        self.rect = self.image.get_rect()
+        pygame.Rect.move_ip(self.rect, self.x , self.y)
+        if rot == True:
+            self.rotate()
+
+    def rotate(self):
         self.rotation = (self.rotation + 1) % 4
         print("update was called" + str(self.rotation))
-
         self.draw()
 
     def draw(self):

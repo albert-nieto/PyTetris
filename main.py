@@ -41,7 +41,14 @@ spriteList.add(JPiece)
 backImg = pygame.image.load('images/background.png')
 
 gameIsRunning = True
+clock = pygame.time.Clock()
+FPS = 30
+time_elapsed = 0
+moveDown = False
 while gameIsRunning:
+    dt = clock.tick(FPS)
+    time_elapsed += dt
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             gameIsRunning = False
@@ -49,13 +56,17 @@ while gameIsRunning:
             if event.key == pygame.K_UP:
                 rotate = True
 
+    if time_elapsed >= 1000:
+        #print((str(time_elapsed) + " has passed."))
+        spriteList.update(rotate)
+        time_elapsed = 0
 
     mainscreen.fill((255,255,255))
 
     mainscreen.blit(backImg,(Screen.screenWidth/2 - (150),Screen.screenHeight/2 -(240)))
 
     if rotate == True:
-        spriteList.update()
+        spriteList.update(rotate)
         rotate = False
 
     spriteList.draw(mainscreen)
